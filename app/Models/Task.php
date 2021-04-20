@@ -17,4 +17,14 @@ class Task extends Model
         'start_time',
         'duration'
     ];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return  $this->belongsTo(Category::class);
+    }
 }

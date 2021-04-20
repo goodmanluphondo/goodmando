@@ -15,10 +15,14 @@
             <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex flex-col justify-end mt-4">
             <breeze-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Email Password Reset Link
             </breeze-button>
+
+            <div class="mt-2 text-sm">
+                <inertia-link href="/login">&larr; Back to Login screen</inertia-link>
+            </div>
         </div>
     </form>
 </template>

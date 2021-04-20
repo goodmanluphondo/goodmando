@@ -11,7 +11,7 @@
                                 <div class="absolute top-0 left-0 h-4 w-4 cursor-pointer rounded-lg border border-gray-500 z-10 hidden"></div>
 
                                 <!-- Default checkbox -->
-                                <input type="checkbox" name="task" class="absolute h-4 w-4 opacity-90 rounded-lg outline-none">
+                                <input type="checkbox" v-model="checkedTasks" :value="task.id" @change="spit" class="absolute h-4 w-4 opacity-90 rounded-lg outline-none">
                             </div>
                             <div class="flex-1">
                                 {{ task.description }}
@@ -28,8 +28,16 @@
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
 
     export default {
+      data() {
+        checkedTasks: []
+      },
       props: {
         tasks: Object
+      },
+      methods: {
+        split() {
+          console.log(this.checkedTasks);
+        }
       },
         components: {
             BreezeAuthenticatedLayout,

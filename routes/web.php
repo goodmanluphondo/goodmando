@@ -2,7 +2,10 @@
 
 use App\Models\Task;
 use App\Models\Category;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Tasks1Controller;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -26,56 +29,6 @@ Route::get('/', function () {
     ]);
 });
 
-// Route::get('/dashboard', function () {
-//     $tasks = new Task;
-//     return Inertia::render('Dashboard', [
-//         'tasks' => $tasks->all()
-//     ]);
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/tasks', function () {
-    $tasks = new Task;
-    return Inertia::render('Tasks', [
-        'tasks' => $tasks->all()
-    ]);
-})->middleware(['auth', 'verified'])->name('tasks');
-
-Route::get('/tasks/{condition}', function ($condition) {
-    $tasks = new Task;
-    $show_tasks = array();
-    $conditions = ['today', 'completed', 'upcoming'];
-    if (in_array($condition, $conditions)) {
-        switch ($condition) {
-            case "today":
-                $show_tasks = $tasks::all()->where('start_date', now());
-                break;
-            case "completed":
-                $show_tasks = $tasks::all()->where('completed', true);
-                break;
-            case "upcoming":
-                $show_tasks = $tasks::all()->where('completed', false);
-                break;
-        }
-        return Inertia::render('Dashboard', [
-            'tasks' => $show_tasks
-        ]);
-    } else {
-        return redirect("/tasks");
-    }
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/add-task', function () {
-    $categories = new Category;
-    return Inertia::render('New', [
-        'categories' => $categories->all()
-    ]);
-})->middleware(['auth', 'verified'])->name('add-task');
-
-// Route::get('/inbox', function () {
-//     $tasks = new Task;
-//     return Inertia::render('Inbox', [
-//         'tasks' => $tasks->all()
-//     ]);
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('tasks', TaskController::class)->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';

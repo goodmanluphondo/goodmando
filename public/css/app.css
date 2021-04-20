@@ -11434,6 +11434,10 @@ select {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+.font-fira {
+  font-family: Fira Sans;
+}
+
 .font-thin {
   font-weight: 100;
 }
@@ -42775,6 +42779,10 @@ select {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  .sm\:font-fira {
+    font-family: Fira Sans;
+  }
+
   .sm\:font-thin {
     font-weight: 100;
   }
@@ -73944,6 +73952,10 @@ select {
 
   .md\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .md\:font-fira {
+    font-family: Fira Sans;
   }
 
   .md\:font-thin {
@@ -105117,6 +105129,10 @@ select {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  .lg\:font-fira {
+    font-family: Fira Sans;
+  }
+
   .lg\:font-thin {
     font-weight: 100;
   }
@@ -136288,6 +136304,10 @@ select {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  .xl\:font-fira {
+    font-family: Fira Sans;
+  }
+
   .xl\:font-thin {
     font-weight: 100;
   }
@@ -167457,6 +167477,10 @@ select {
 
   .\32xl\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .\32xl\:font-fira {
+    font-family: Fira Sans;
   }
 
   .\32xl\:font-thin {

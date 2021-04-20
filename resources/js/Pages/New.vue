@@ -9,24 +9,28 @@
           </ul>
           <div class="w-full mb-8">
             <label class="block mb-2">Description</label>
-            <input type="text" v-model="description" class="w-full text-sm">
+            <input type="text" v-model="form.description" class="w-full text-sm">
           </div>
           <div class="w-full mb-8">
             <label class="block mb-2">Category</label>
-            <select v-model="category" class="w-full text-sm">
+            <select v-model="form.category" class="w-full text-sm">
               <option v-for="(category, index) in categories" :key="index" :value="category.id">{{category.name}}</option>
             </select>
           </div>
           <div class="w-full mb-8">
             <label class="block mb-2">Start Date</label>
-            <input type="date" v-model="startDate" class="w-full text-sm">
+            <input type="date" v-model="form.startDate" class="w-full text-sm">
           </div>
           <div class="w-full mb-8">
             <label class="block mb-2">Start Time</label>
-            <input type="time" v-model="startTime" class="w-full text-sm">
+            <input type="time" v-model="form.startTime" class="w-full text-sm">
+          </div>
+          <div class="w-full mb-8">
+            <label class="block mb-2">Duration (minutes)</label>
+            <input type="number" min="0" step="15" v-model="form.duration" class="w-full text-sm">
           </div>
           <div class="">
-            <input type="submit" value="Save" class="p-4 text-white bg-blue-500">
+            <input type="submit" value="Save" class="p-4 px-8 rounded-lg text-white bg-blue-500 cursor-pointer">
           </div>
         </div>
       </form>
@@ -41,10 +45,13 @@
       data() {
         return {
           errors: [],
-          description: "",
-          category: null,
-          startDate: null,
-          startTime: null,
+          form: {
+            description: "",
+            category: null,
+            startDate: null,
+            startTime: null,
+            duration: 0
+          }
         }
       },
       methods: {
@@ -52,12 +59,13 @@
           var self = this;
 
           self.errors = [];
-          if(self.description && self.category && self.startDate && self.startTime) {
+          if(self.form.description && self.form.category && self.form.startDate && self.form.startTime && self.form.duration) {
             console.log("We are getting somewhere.");
-            console.log(self.description, self.category, self.startDate, self.startTime);
+            // this.$inertia.post('tasks', self.form);
+            this.$inertia.post('/tasks/', self.form);
           } else {
             console.log("Not looking good.");
-            console.log(self.description, self.category, self.startDate, self.startTime);
+            console.log(self.form);
           }
         }
       },

@@ -1,11 +1,12 @@
 <template>
-    <div class="w-6/12">
+    <div class="w-full">
         <breeze-validation-errors class="mb-4" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
 
+        <h1 class="text-2xl mb-4">Welcome back! Log in below.</h1>
         <form @submit.prevent="submit">
             <div>
                 <breeze-label for="email" value="Email" />
@@ -24,14 +25,14 @@
                 </label>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex flex-col mt-4">
+                <breeze-button class="flex-shrink-0" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    Log in
+                </breeze-button>
+
                 <inertia-link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
                     Forgot your password?
                 </inertia-link>
-
-                <breeze-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </breeze-button>
             </div>
         </form>
     </div>
