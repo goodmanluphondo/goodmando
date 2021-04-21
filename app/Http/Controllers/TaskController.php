@@ -75,23 +75,37 @@ class TaskController extends Controller
         $tasks = new Task;
         $userId = Auth::user()->id;
         $userTasks = $tasks::all()->where('user_id', $userId);
-        $viewTasks = array();
+        // $viewTasks = array();
+        $props = array();
         $conditions = ['today', 'completed', 'upcoming'];
         if (in_array($condition, $conditions)) {
             switch ($condition) {
                 case "today":
-                    $viewTasks = $userTasks->where('start_date', date("Y-m-d"));
+                    $props = [
+                        'title' => 'Today\'s Tasks',
+                        'tasks' => $userTasks->where('start_date', date("Y-m-d"))
+                    ];
+                    // $viewTasks = $userTasks->where('start_date', date("Y-m-d"));
                     break;
                 case "completed":
-                    $viewTasks = $userTasks->where('completed', true);
+                    $props = [
+                        'title' => 'Completed Tasks',
+                        'tasks' => $userTasks->where('completed', true)
+                    ];
+                    // $viewTasks = $userTasks->where('completed', true);
                     break;
                 case "upcoming":
-                    $viewTasks = $userTasks->where('completed', false);
+                    $props = [
+                        'title' => 'Upcoming Tasks',
+                        'tasks' => $userTasks->where('completed', false)
+                    ];
+                    // $viewTasks = $userTasks->where('completed', false);
                     break;
             }
-            return Inertia::render('Tasks', [
-                'tasks' => $viewTasks
-            ]);
+            // return Inertia::render('Tasks', [
+            //     'tasks' => $viewTasks
+            // ]);
+            return Inertia::render('Tasks', $props);
         } else {
             return redirect("tasks");
         }

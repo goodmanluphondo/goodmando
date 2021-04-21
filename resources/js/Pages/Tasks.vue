@@ -19,7 +19,10 @@
                   <button type="button">Cancel</button>
                 </div>
 
-                <h1 class="text-blue-500 text-2xl">Inbox</h1>
+                <h1 class="text-blue-500 text-2xl mb-4">
+                  <span class="" v-if="title">{{title}}</span>
+                  <span class="" v-else>Inbox</span>
+                </h1>
                 <ul>
                     <!-- <li v-for="(task, index) in tasks" :key="index" class="py-4 flex space-x-2"> -->
                     <li v-for="(task, index) in tasks" :key="index" class="py-4 flex space-x-2">
@@ -78,6 +81,7 @@
         },
         props: {
             alert: String,
+            title: String,
             tasks: Object
         },
         methods: {

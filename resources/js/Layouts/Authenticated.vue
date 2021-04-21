@@ -6,7 +6,7 @@
                 <header class="w-full h-16 flex flex-row items-center shadow mb-4">
                     <div class="flex-1 px-4 sm:px-6 lg:px-8">
                         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                            <inertia-link href="/dashboard">
+                            <inertia-link href="/tasks">
                                 Goodman.do
                             </inertia-link>
                         </h2>
