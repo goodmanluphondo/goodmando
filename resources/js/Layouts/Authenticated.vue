@@ -144,7 +144,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="w-full h-full pl-0 sm:pl-12 pr-4 overflow-y-auto">
+                    <div ref="canvas" class="w-full h-full pl-0 sm:pl-12 pr-0 sm:pr-4 overflow-y-auto">
                         <slot />
                     </div>
                 </main>
