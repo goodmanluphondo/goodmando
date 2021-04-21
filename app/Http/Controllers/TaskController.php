@@ -49,17 +49,12 @@ class TaskController extends Controller
     {
         $task = new Task;
         $task->user_id = Auth::user()->id;
-        $task->category_id = $request->input('category');
         $task->description = $request->input('description');
-        $task->start_date = $request->input('startDate');
-        $task->start_time = $request->input('startTime');
-        $task->duration = $request->input('duration');
+        // $task->category_id = $request->input('category');
+        // $task->start_date = $request->input('startDate');
+        // $task->start_time = $request->input('startTime');
+        // $task->duration = $request->input('duration');
         $task->save();
-
-        // return Inertia::render('Tasks', [
-        //     'alert' => 'Task added successfully.',
-        //     'tasks' => Task::all()->where('user_id', Auth::user()->id)
-        // ]);
 
         return redirect('tasks');
     }
@@ -83,7 +78,7 @@ class TaskController extends Controller
                 case "today":
                     $props = [
                         'title' => 'Today\'s Tasks',
-                        'tasks' => $userTasks->where('start_date', date("Y-m-d"))
+                        'tasks' => $userTasks->whereBetween('created_at', [date("Y-m-d 00:00:00"), date("Y-m-d 23:59:00")])
                     ];
                     // $viewTasks = $userTasks->where('start_date', date("Y-m-d"));
                     break;

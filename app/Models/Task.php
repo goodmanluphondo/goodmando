@@ -11,11 +11,11 @@ class Task extends Model
 
     protected $fillable = [
         'user_id',
-        'category_id',
-        'description',
-        'start_date',
-        'start_time',
-        'duration'
+        // 'category_id',
+        'description'
+        // 'start_date',
+        // 'start_time',
+        // 'duration'
     ];
 
     public function owner()

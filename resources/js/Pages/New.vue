@@ -8,24 +8,12 @@
             <label class="block mb-2">Description</label>
             <input type="text" v-model="form.description" class="w-full text-sm rounded-lg p-3 border-gray-300">
           </div>
-          <div class="w-full mb-8">
+          <!-- <div class="w-full mb-8">
             <label class="block mb-2">Category</label>
             <select v-model="form.category" class="w-full text-sm rounded-lg p-3 border-gray-300">
               <option v-for="(category, index) in categories" :key="index" :value="category.id">{{category.name}}</option>
             </select>
-          </div>
-          <div class="w-full mb-8">
-            <label class="block mb-2">Start Date</label>
-            <input type="date" v-model="form.startDate" class="w-full text-sm rounded-lg p-3 border-gray-300">
-          </div>
-          <div class="w-full mb-8">
-            <label class="block mb-2">Start Time</label>
-            <input type="time" v-model="form.startTime" class="w-full text-sm rounded-lg p-3 border-gray-300">
-          </div>
-          <div class="w-full mb-8">
-            <label class="block mb-2">Duration (minutes)</label>
-            <input type="number" min="15" step="15" v-model="form.duration" class="w-full text-sm rounded-lg p-3 border-gray-300">
-          </div>
+          </div> -->
           <div v-if="showErrors && errors.length" class="w-full mb-4">
             <span class="font-bold mb-2">You need to fix the following errors:</span>
             <ul  class="w-full">
@@ -51,10 +39,7 @@
           showErrors: true,
           form: {
             description: "",
-            category: null,
-            startDate: null,
-            startTime: null,
-            duration: 15
+            // category: null,
           }
         }
       },
@@ -70,15 +55,11 @@
           var self = this;
 
           self.errors = [];
-          if(self.form.description && self.form.category && self.form.startDate && self.form.startTime && self.form.duration) {
-            console.log("We are getting somewhere.");
+          if(self.form.description) {
             this.$inertia.post('/tasks/', self.form);
           } else {
             if(!self.form.description) self.errors.push("You need a description for your task.");
-            if(!self.form.category) self.errors.push("Your task must have a category.");
-            if(!self.form.startDate) self.errors.push("A start date for the task must be included.");
-            if(!self.form.startTime) self.errors.push("There must be a start time.");
-            if(!self.form.duration) self.errors.push("A duration is expected.");
+            // if(!self.form.category) self.errors.push("Your task must have a category.");
 
             this.$refs.main.scrollToTop = 0;
           }
